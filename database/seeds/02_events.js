@@ -1,0 +1,146 @@
+exports.seed = async function (knex) {
+	try {
+		await knex('Event')
+			.insert([
+				{
+					id: 1,
+					name: 'commented',
+					required_roles: [11, 12, 13, 14],
+					is_global: true,
+					is_team_specific: true,
+					is_user_specific: true,
+					notification_text: null,
+				},
+				// {
+				// 	id: 2,
+				// 	name: 'leave_added',
+				// 	required_roles: [11, 12, 13],
+				// },
+				// {
+				// 	id: 3,
+				// 	name: 'leave_updated',
+				// 	required_roles: [13, 14],
+				// },
+				{
+					id: 4,
+					name: 'task_created',
+					required_roles: [16, 12, 13, 14],
+					is_global: true,
+					is_team_specific: true,
+					is_user_specific: false,
+					notification_text: null,
+				},
+				{
+					id: 5,
+					name: 'task_assigned',
+					required_roles: [16, 12, 13, 14],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: null,
+				},
+				{
+					id: 6,
+					name: 'task_approval_updated',
+					required_roles: [],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: 'Approval updated for "{task.title}"',
+				},
+				// {
+				// 	id: 6,
+				// 	name: 'task_approval_updated',
+				// 	required_roles: [],
+				// 	is_global: false,
+				// },
+				{
+					id: 7,
+					name: 'task_status_updated',
+					required_roles: [16, 12, 13, 14],
+					is_global: true,
+					is_team_specific: true,
+					is_user_specific: false,
+					notification_text: null,
+				},
+				{
+					id: 8,
+					name: 'comment_created',
+					required_roles: [16, 12, 13, 14],
+					is_global: true,
+					is_team_specific: true,
+					is_user_specific: false,
+					notification_text: '[full_name] commented on "{task.title}"',
+				},
+				{
+					id: 9,
+					name: 'comment_mentioned',
+					required_roles: [],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: 'You were mentioned on "{task.title}"',
+				},
+				{
+					id: 10,
+					name: 'leave_request_created',
+					required_roles: [11, 12, 16],
+					is_global: true,
+					is_team_specific: false,
+					is_user_specific: false,
+					notification_text: '[full_name] requested for leave',
+				},
+				{
+					id: 11,
+					name: 'leave_request_status_updated',
+					required_roles: [],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: 'Leave request "{status}"',
+				},
+				// {
+				// 	id: 12,
+				// 	name: 'user_added',
+				// 	required_roles: [16, 12, 13],
+				// 	is_global: false,
+				// 	is_team_specific: false,
+				// 	is_user_specific: true,
+				// 	notification_text: null,
+				// },
+				// {
+				// 	id: 13,
+				// 	name: 'user_updated',
+				// 	required_roles: [],
+				// 	is_global: false,
+				// 	is_team_specific: false,
+				// 	is_user_specific: true,
+				// 	notification_text: null,
+				// },
+				// { id: 14, name: 'user_status_updated', required_roles: [16] },
+				// { id: 15, name: 'mentioned', required_roles: [], is_global: true },
+				{
+					id: 14,
+					name: 'my_task_invited',
+					required_roles: [],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: '[full_name] invited you to "{title}"',
+				},
+				{
+					id:15,
+					name:'user_created',
+					required_roles: [],
+					is_global: false,
+					is_team_specific: false,
+					is_user_specific: true,
+					notification_text: ''
+				},				
+			])
+			.onConflict('id')
+			.merge();
+	} catch (err) {
+		console.log(err);
+	}
+};
